@@ -2,32 +2,24 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class RotateDoor : MonoBehaviour
 {
-    [SerializeField] private GameObject DoorTriggerGameObject;
-    private DoorTrigger doorTrigger;
-    private bool doorTriggered;
-    [SerializeField] Transform pivotPoint;
     [SerializeField] private float closeSpeed = 1f;
+    private Rigidbody rb;
 
-    void Start()
+    private void Awake()
     {
-        doorTrigger = DoorTriggerGameObject.GetComponent<DoorTrigger>();
+        rb = GetComponent<Rigidbody>();
     }
 
-    void Update()
+    public void Rotate()
     {
-        doorTriggered = doorTrigger.doorTriggered;
-        if (doorTriggered)
-        {
-            if (transform.eulerAngles.y >= 180)
-            {
-                doorTrigger.doorTriggered = false;
-                return;
-            }
+        // while (transform.eulerAngles.y <= 180)
 
-            this.transform.RotateAround(pivotPoint.position, Vector3.up, closeSpeed * Time.deltaTime);
-        }
+        // this.transform.RotateAround(pivotPoint.position, Vector3.up, closeSpeed);
+        rb.AddTorque(0, closeSpeed, 0);
     }
 }
+

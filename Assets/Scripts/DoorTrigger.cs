@@ -2,16 +2,17 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class DoorTrigger : MonoBehaviour
 {
-    public bool doorTriggered;
+    public UnityEvent myEvent;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            doorTriggered = true;
+            myEvent.Invoke();
         }
     }
 }

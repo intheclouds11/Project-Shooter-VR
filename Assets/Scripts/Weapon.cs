@@ -6,15 +6,25 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class Weapon : MonoBehaviour
 {
+    [Header("Input")]
     private XRBaseInteractable XRBaseInteractable;
     [SerializeField] ActionBasedController leftActionBasedController;
     [SerializeField] ActionBasedController rightActionBasedController;
     private InputAction leftTriggerAction;
     private InputAction rightTriggerAction;
+    
+    [Header("VFX")]
     [SerializeField] ParticleSystem muzzleFlashVFX;
     [SerializeField] GameObject hitVFX;
     private Transform spawnAtRuntime;
+    
+    [Header("Audio")]
+    private AudioSource sfx;
+    [SerializeField] private AudioClip shootSFX;
+    [SerializeField] private AudioClip emptyMagSFX;
+    [SerializeField] private AudioClip reloadSFX;
 
+    [Header("Weapon Stats")]
     [SerializeField] private float range = 100f;
     [SerializeField] private float damage = 25f;
 
@@ -24,6 +34,7 @@ public class Weapon : MonoBehaviour
         leftTriggerAction = leftActionBasedController.activateAction.action;
         rightTriggerAction = rightActionBasedController.activateAction.action;
         spawnAtRuntime = GameObject.FindWithTag("Spawn at Runtime").transform;
+        sfx = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -39,6 +50,7 @@ public class Weapon : MonoBehaviour
 
     private void Shoot()
     {
+        sfx.PlayOneShot(shootSFX);
         PlayMuzzleFlash();
         ProcessRaycast();
     }
