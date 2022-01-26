@@ -39,16 +39,16 @@ public class Weapon : MonoBehaviour
 
     void Update()
     {
-        if (XRBaseInteractable.isSelected)
-        {
-            if (leftTriggerAction.triggered || rightTriggerAction.triggered)
-            {
-                Shoot();
-            }
-        }
+        // if (XRBaseInteractable.isSelected)
+        // {
+        //     if (leftTriggerAction.triggered || rightTriggerAction.triggered)
+        //     {
+        //         Shoot();
+        //     }
+        // }
     }
 
-    private void Shoot()
+    public void Shoot()
     {
         sfx.PlayOneShot(shootSFX);
         PlayMuzzleFlash();

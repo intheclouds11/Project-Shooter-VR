@@ -5,12 +5,24 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class VRDebugging : MonoBehaviour
 {
-    public bool HMDDetected;
+    [SerializeField] private bool cursorLocked;
     [SerializeField] private GameObject XRDeviceSim;
 
     void Start()
     {
         DetectHmd();
+    }
+
+    private void Update()
+    {
+        if (cursorLocked)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.None;
+        }
     }
 
     private void DetectHmd()
@@ -25,8 +37,8 @@ public class VRDebugging : MonoBehaviour
         else
         {
             Debug.Log("Case 2: No HMD detected");
-            HMDDetected = false;
+            Cursor.lockState = CursorLockMode.Locked;
+            cursorLocked = true;
         }
     }
-    
 }
