@@ -70,19 +70,7 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
-Assets/ExampleAssets/Models/
-Assets/TextMesh Pro/
-Assets/TutorialInfo/
-Assets/ExampleAssets/
-Assets/Asset Unlock - 3D Prototyping/
-Assets/Standard Assets/2D/
-Assets/Standard Assets/Vehicles/Car/Textures/
-Assets/Standard Assets/Vehicles/Aircraft/Textures/
-Assets/Standard Assets/Vehicles/Aircraft/Models/
-Assets/Standard Assets/SampleScenes/Textures/
-Assets/Standard Assets/Prototyping/Textures/
-Assets/Standard Assets/ParticleSystems/Textures/
-Assets/Standard Assets/Environment/Water/Water/Textures/
-Assets/Standard Assets/Environment/
-Assets/Standard Assets/Effects/ToonShading/Textures/ToonLit.psd
-Assets/Standard Assets/Effects/
+
+Assets/Asset Packs/Sci Fi Gun Light/
+Assets/Asset Packs/Standard Assets/
+Assets/Asset Packs/TextMesh Pro/
