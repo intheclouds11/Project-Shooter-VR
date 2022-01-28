@@ -4,27 +4,24 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class Weapon : MonoBehaviour
 {
-    [Header("Input")]
-    private XRBaseInteractable _xrBaseInteractable;
+    [Header("Input")] private XRBaseInteractable _xrBaseInteractable;
     [SerializeField] private ActionBasedController leftActionBasedController;
     [SerializeField] private ActionBasedController rightActionBasedController;
     private InputAction _leftTriggerAction;
     private InputAction _rightTriggerAction;
-    
-    [Header("VFX")]
-    [SerializeField]
-    private ParticleSystem muzzleFlashVFX;
+
+    [Header("VFX")] [SerializeField] private ParticleSystem muzzleFlashVFX;
     [SerializeField] private GameObject hitVFX;
     private Transform _spawnAtRuntime;
-    
-    [Header("Audio")]
-    private AudioSource _sfx;
+
+    [Header("Audio")] private AudioSource _sfx;
     [SerializeField] private AudioClip shootSFX;
     [SerializeField] private AudioClip emptyMagSFX;
     [SerializeField] private AudioClip reloadSFX;
 
-    [Header("Weapon Stats")]
-    [SerializeField] private float range = 100f;
+    [Header("Weapon Stats")] [SerializeField]
+    private float range = 100f;
+
     [SerializeField] private float damage = 25f;
 
     private void Start()
@@ -69,6 +66,17 @@ public class Weapon : MonoBehaviour
             {
                 EnemyHealth target = hit.transform.GetComponent<EnemyHealth>();
                 target.TakeDamage(damage);
+            }
+            else
+            {
+                IInteractable interactable = hit.transform.gameObject.GetComponent<IInteractable>();
+                if (interactable == null)
+                {
+                    Debug.Log("null!");
+                    return;
+                }
+
+                interactable.Interact();
             }
         }
     }

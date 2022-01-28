@@ -2,15 +2,14 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
-    [SerializeField] private float hitPoints = 100f;
-
+    [SerializeField] private float _hitPoints = 100f;
 
     public void TakeDamage(float damage)
     {
-        hitPoints -= damage;
-        Debug.Log($"Hit! HP remaining: {hitPoints}");
+        _hitPoints -= damage;
+        Debug.Log($"Hit! HP remaining: {_hitPoints}");
         
-        if (hitPoints <= 0)
+        if (_hitPoints <= 0)
         {
             Destroy(this.gameObject);
         }
