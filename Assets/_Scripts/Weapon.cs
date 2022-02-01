@@ -19,9 +19,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] private AudioClip emptyMagSFX;
     [SerializeField] private AudioClip reloadSFX;
 
-    [Header("Weapon Stats")] [SerializeField]
-    private float range = 100f;
-
+    [Header("Weapon Stats")] [SerializeField] private float range = 100f;
     [SerializeField] private float damage = 25f;
 
     private void Start()
@@ -62,20 +60,13 @@ public class Weapon : MonoBehaviour
         if (Physics.Raycast(transform.position, transform.forward, out hit, range) && hit.transform != null)
         {
             CreateHitImpact(hit);
-            if (hit.transform.CompareTag("Enemy"))
+            if (hit.transform.TryGetComponent(out EnemyHealth enemyHealth))
             {
-                EnemyHealth target = hit.transform.GetComponent<EnemyHealth>();
-                target.TakeDamage(damage);
+                enemyHealth.TakeDamage(damage);
             }
-            else
+            else if (hit.transform.TryGetComponent(out IInteractable interactable))
             {
-                IInteractable interactable = hit.transform.gameObject.GetComponent<IInteractable>();
-                if (interactable == null)
-                {
-                    Debug.Log("null!");
-                    return;
-                }
-
+                if (interactable == null) return;
                 interactable.Interact();
             }
         }
