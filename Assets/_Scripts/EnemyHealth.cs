@@ -1,16 +1,28 @@
+using System;
 using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
-    [SerializeField] private float _hitPoints = 100f;
+    public EnemyStatsSO enemyStatsSO;
+    [SerializeField] public float currentHealth;
+
+    private void Awake()
+    {
+        currentHealth = enemyStatsSO.health;
+    }
 
     public void TakeDamage(float damage)
     {
-        _hitPoints -= damage;
-        Debug.Log($"Hit! HP remaining: {_hitPoints}");
-        
-        if (_hitPoints <= 0)
+        currentHealth -= damage;
+        Debug.Log($"Hit! HP remaining: {currentHealth}");
+
+        if (currentHealth <= 0)
         {
+            EnemyManager.Instance._currentEnemyList.Remove(this.gameObject);
+            if (EnemyManager.Instance._currentEnemyList.Count <= 0)
+            {
+                GameManager.Instance.UpdateGameState(GameState.Win);
+            }
             Destroy(this.gameObject);
         }
     }

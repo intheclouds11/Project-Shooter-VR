@@ -260,7 +260,7 @@ GameObject:
   - component: {fileID: 5746374468997493290}
   - component: {fileID: 5746374468997493288}
   m_Layer: 0
-  m_Name: Norwegianforest_Cat_skogkatt
+  m_Name: Cat Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -304,7 +304,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.18
-  m_Speed: 3.5
+  m_Speed: 2.5
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -347,7 +347,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3733c944796f3954e8dc469d43147ae4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damage: 40
+  enemyStatsSO: {fileID: 11400000, guid: 63345cb30c646794c9cdaeb717409725, type: 2}
 --- !u!114 &5746374468997493290
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -360,7 +360,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7eac4a97e30a1d441a52ff2470064164, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hitPoints: 100
+  enemyStatsSO: {fileID: 11400000, guid: 63345cb30c646794c9cdaeb717409725, type: 2}
+  currentHealth: 0
 --- !u!114 &5746374468997493288
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -373,7 +374,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 655a42b9600bc9b43b16f7157f2b3a9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _chaseRange: 6
+  enemyStatsSO: {fileID: 11400000, guid: 63345cb30c646794c9cdaeb717409725, type: 2}
+  _target: {fileID: 0}
 --- !u!1 &1312513410020945446
 GameObject:
   m_ObjectHideFlags: 0

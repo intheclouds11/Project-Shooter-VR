@@ -13,15 +13,15 @@ public class PlayerControls : MonoBehaviour
 
     private void OnEnable()
     {
-        EnableControls();
+        EnableJump();
     }
 
     private void OnDisable()
     {
-        DisableControls();
+        DisableJump();
     }
 
-    private void Start()
+    private void Awake()
     {
         _controller = GetComponent<CharacterController>();
     }
@@ -30,10 +30,10 @@ public class PlayerControls : MonoBehaviour
     {
         _playerVelocity.y += _gravityValue * Time.deltaTime;
 
-        _controller.Move(_playerVelocity * Time.deltaTime);
+        _controller.Move(_playerVelocity * Time.deltaTime); // for jump
     }
 
-    private void EnableControls()
+    private void EnableJump()
     {
         var gameplayActionMapRH = XRControls.FindActionMap("XRI RightHand");
 
@@ -42,7 +42,7 @@ public class PlayerControls : MonoBehaviour
         _jump.Enable();
     }
 
-    private void DisableControls()
+    private void DisableJump()
     {
         _jump.performed -= ProcessJump;
         _jump.Disable();
@@ -61,8 +61,5 @@ public class PlayerControls : MonoBehaviour
             Debug.Log("Jump pressed!");
             _playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * _gravityValue);
         }
-
-        
     }
-    
 }

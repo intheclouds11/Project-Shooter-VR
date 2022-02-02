@@ -4,8 +4,11 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class Weapon : MonoBehaviour
 {
-    [Header("Input")] private XRBaseInteractable _xrBaseInteractable;
-    [SerializeField] private ActionBasedController leftActionBasedController;
+    [Header("Input")]
+    // private XRBaseInteractable _xrBaseInteractable;
+    [SerializeField]
+    private ActionBasedController leftActionBasedController;
+
     [SerializeField] private ActionBasedController rightActionBasedController;
     private InputAction _leftTriggerAction;
     private InputAction _rightTriggerAction;
@@ -22,9 +25,9 @@ public class Weapon : MonoBehaviour
     [Header("Weapon Stats")] [SerializeField] private float range = 100f;
     [SerializeField] private float damage = 25f;
 
-    private void Start()
+    private void Awake()
     {
-        _xrBaseInteractable = GetComponent<XRBaseInteractable>();
+        // _xrBaseInteractable = GetComponent<XRBaseInteractable>();
         _leftTriggerAction = leftActionBasedController.activateAction.action;
         _rightTriggerAction = rightActionBasedController.activateAction.action;
         _spawnAtRuntime = GameObject.FindWithTag("Spawn at Runtime").transform;

@@ -3,34 +3,38 @@ using UnityEngine.AI;
 
 public class EnemyAI : MonoBehaviour
 {
-    private Transform _target;
-    [SerializeField] private float _chaseRange = 5f;
-    [SerializeField] private float turningSpeed = 5f;
+    public EnemyStatsSO enemyStatsSO;
+    private float _agroRange;
+    private float _turningSpeed;
 
     private NavMeshAgent _mNavMeshAgent;
     private float _distanceToTarget = Mathf.Infinity;
     private bool _isProvoked;
 
     private Animator _animator;
+    private static readonly int AttackAnimation = Animator.StringToHash("attack");
+    private static readonly int IdleAnimation = Animator.StringToHash("idle");
+    private static readonly int MoveAnimation = Animator.StringToHash("move");
 
-    private PlayerHealth _targetHealth;
+    public PlayerHealth _target;
 
     private void Awake()
     {
+        _agroRange = enemyStatsSO.agroRange;
+        _turningSpeed = enemyStatsSO.turningSpeed;
         _mNavMeshAgent = GetComponent<NavMeshAgent>();
         _animator = GetComponent<Animator>();
-        _targetHealth = GameObject.FindWithTag("Player").GetComponent<PlayerHealth>();
-        _target = GameObject.FindWithTag("Player").transform;
+        _target = FindObjectOfType<PlayerHealth>();
     }
 
     private void Update()
     {
-        _distanceToTarget = Vector3.Distance(_target.position, this.transform.position);
+        _distanceToTarget = Vector3.Distance(_target.transform.position, this.transform.position);
         if (_isProvoked)
         {
             EngageTarget();
         }
-        else if (_distanceToTarget <= _chaseRange)
+        else if (_distanceToTarget <= _agroRange)
         {
             _isProvoked = true;
         }
@@ -38,6 +42,13 @@ public class EnemyAI : MonoBehaviour
 
     private void EngageTarget()
     {
+        if (_target.currentHealth <= 0)
+        {
+            _animator.SetBool(AttackAnimation, false);
+            _animator.SetTrigger(IdleAnimation);
+            return;
+        }
+
         FaceTarget();
         if (_distanceToTarget >= _mNavMeshAgent.stoppingDistance)
         {
@@ -52,35 +63,29 @@ public class EnemyAI : MonoBehaviour
 
     private void ChaseTarget()
     {
-        _mNavMeshAgent.SetDestination(_target.position);
-        _animator.SetTrigger("move");
-        _animator.SetBool("attack", false); // stop attack animation when chasing
+        _mNavMeshAgent.SetDestination(_target.transform.position);
+        _animator.SetTrigger(MoveAnimation);
+        _animator.SetBool(AttackAnimation, false); // stop attack animation when chasing
     }
 
     private void AttackTarget()
     {
-        if (_targetHealth.hitPoints <= 0)
-        {
-            _animator.SetBool("attack", false);
-            return;
-        }
-
-        _animator.SetBool("attack", true);
+        _animator.SetBool(AttackAnimation, true); // attack animation invokes AttackHitEvent()
     }
 
     private void FaceTarget()
     {
         // want to make transform.rotation = target transform.rotation, rotate at a certain speed
         // direction == position 1 vector - position 2 vector, normalized (magnitude 1)
-        
-        Vector3 direction = (_target.position - this.transform.position).normalized; 
+
+        Vector3 direction = (_target.transform.position - this.transform.position).normalized;
         Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
-        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, turningSpeed * Time.deltaTime);
+        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, _turningSpeed * Time.deltaTime);
     }
-    
+
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, _chaseRange);
+        Gizmos.DrawWireSphere(transform.position, _agroRange);
     }
 }
