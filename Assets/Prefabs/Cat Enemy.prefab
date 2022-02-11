@@ -376,6 +376,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyStatsSO: {fileID: 11400000, guid: 63345cb30c646794c9cdaeb717409725, type: 2}
   _target: {fileID: 0}
+  health: {fileID: 0}
 --- !u!1 &1312513410020945446
 GameObject:
   m_ObjectHideFlags: 0

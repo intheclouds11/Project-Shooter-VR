@@ -1,3 +1,5 @@
+using System;
+using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -7,7 +9,7 @@ public class EnemyAI : MonoBehaviour
     private float _agroRange;
     private float _turningSpeed;
 
-    private NavMeshAgent _mNavMeshAgent;
+    private NavMeshAgent _navMeshAgent;
     private float _distanceToTarget = Mathf.Infinity;
     private bool _isProvoked;
 
@@ -17,14 +19,31 @@ public class EnemyAI : MonoBehaviour
     private static readonly int MoveAnimation = Animator.StringToHash("move");
 
     public PlayerHealth _target;
+    public EnemyHealth health;
+
 
     private void Awake()
     {
+        _navMeshAgent = GetComponent<NavMeshAgent>();
+        _animator = GetComponent<Animator>();
+        health = GetComponent<EnemyHealth>();
+        _target = FindObjectOfType<PlayerHealth>();
+    }
+
+    private void Start()
+    {
         _agroRange = enemyStatsSO.agroRange;
         _turningSpeed = enemyStatsSO.turningSpeed;
-        _mNavMeshAgent = GetComponent<NavMeshAgent>();
-        _animator = GetComponent<Animator>();
-        _target = FindObjectOfType<PlayerHealth>();
+    }
+
+    private void OnEnable()
+    {
+        health.Damaged += OnDamageTaken;
+    }
+
+    private void OnDisable()
+    {
+        health.Damaged -= OnDamageTaken;
     }
 
     private void Update()
@@ -40,22 +59,28 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
+    private void OnDamageTaken()
+    {
+        _isProvoked = true;
+    }
+
     private void EngageTarget()
     {
         if (_target.currentHealth <= 0)
         {
             _animator.SetBool(AttackAnimation, false);
             _animator.SetTrigger(IdleAnimation);
+            _navMeshAgent.SetDestination(transform.position);
             return;
         }
 
         FaceTarget();
-        if (_distanceToTarget >= _mNavMeshAgent.stoppingDistance)
+        if (_distanceToTarget >= _navMeshAgent.stoppingDistance)
         {
             ChaseTarget();
         }
 
-        if (_distanceToTarget <= _mNavMeshAgent.stoppingDistance)
+        if (_distanceToTarget <= _navMeshAgent.stoppingDistance)
         {
             AttackTarget();
         }
@@ -63,7 +88,8 @@ public class EnemyAI : MonoBehaviour
 
     private void ChaseTarget()
     {
-        _mNavMeshAgent.SetDestination(_target.transform.position);
+        if (_target.currentHealth < 0) return;
+        _navMeshAgent.SetDestination(_target.transform.position);
         _animator.SetTrigger(MoveAnimation);
         _animator.SetBool(AttackAnimation, false); // stop attack animation when chasing
     }

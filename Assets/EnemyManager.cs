@@ -12,15 +12,14 @@ public class EnemyManager : MonoBehaviour, IInteractable
     void Awake()
     {
         Instance = this;
-        
+
         _initialEnemyList = GameObject.FindGameObjectsWithTag("Enemy");
         foreach (var enemyGO in _initialEnemyList)
         {
             _currentEnemyList.Add(enemyGO);
         }
     }
-    
-    
+
     public void SpawnEnemy(GameObject obj)
     {
         _currentEnemyList.Add(Instantiate(obj, new Vector3(Random.Range(-10, 10), .5f, Random.Range(-10, 10)),

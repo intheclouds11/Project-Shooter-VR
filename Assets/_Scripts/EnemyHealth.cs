@@ -4,15 +4,18 @@ using UnityEngine;
 public class EnemyHealth : MonoBehaviour
 {
     public EnemyStatsSO enemyStatsSO;
-    [SerializeField] public float currentHealth;
+    [SerializeField] private float currentHealth;
 
-    private void Awake()
+    public event Action Damaged;
+
+    private void Start()
     {
         currentHealth = enemyStatsSO.health;
     }
 
     public void TakeDamage(float damage)
     {
+        Damaged?.Invoke();
         currentHealth -= damage;
         Debug.Log($"Hit! HP remaining: {currentHealth}");
 

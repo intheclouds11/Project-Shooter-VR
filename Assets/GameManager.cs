@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
     public GameState State;
-    public static event Action<GameState> OnGameStateChanged;
+    public static event Action<GameState> GameStateChanged;
 
     private void Awake()
     {
@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
                 throw new ArgumentOutOfRangeException(nameof(newstate), newstate, null);
         }
         
-        OnGameStateChanged?.Invoke(newstate);
+        GameStateChanged?.Invoke(newstate);
     }
 
     private void HandleLose()

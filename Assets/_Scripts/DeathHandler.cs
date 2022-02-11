@@ -6,15 +6,12 @@ using UnityEngine.XR;
 
 public class DeathHandler : MonoBehaviour
 {
-    [SerializeField] public GameObject MenuCanvas;
-    public GameObject LoseScreen;
-    public GameObject WinScreen;
-
+    // [SerializeField] public GameObject MenuCanvas;
+    // public GameObject LoseScreen;
+    // public GameObject WinScreen;
+    //
     // private void Awake()
     // {
-    //     MenuCanvas.SetActive(false);
-    //     LoseScreen.SetActive(false);
-    //     WinScreen.SetActive(false);
     // }
     //
     // public void HandleDeath()

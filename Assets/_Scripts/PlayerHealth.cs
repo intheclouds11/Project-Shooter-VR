@@ -9,7 +9,9 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private Slider healthSlider;
     [SerializeField] public float maxHealth;
 
-    private void Awake()
+    public event Action Damaged; // use for other classes to know when player is damaged
+    
+    private void Start()
     {
         maxHealth = playerStatsSO.health;
         currentHealth = playerStatsSO.health;
@@ -19,6 +21,7 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
+        Damaged?.Invoke();
         currentHealth -= damage;
         healthSlider.value = currentHealth;
         if (currentHealth <= 0)

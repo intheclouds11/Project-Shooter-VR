@@ -15,7 +15,7 @@ public class Ramp : MonoBehaviour, IInteractable
     private Quaternion _startQuaternion;
 
 
-    private void Awake()
+    private void Start()
     {
         _startPosition = transform.position;
         _startQuaternion = transform.rotation;

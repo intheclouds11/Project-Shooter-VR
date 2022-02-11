@@ -1,15 +1,17 @@
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class DoorTrigger : MonoBehaviour
+public class PlayerEnterTrigger : MonoBehaviour
 {
-    public UnityEvent myEvent;
+
+    public event Action Trigger;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            myEvent.Invoke();
+            Trigger?.Invoke();
         }
     }
 }

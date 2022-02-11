@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(EnemyAI))]
@@ -7,10 +8,14 @@ public class EnemyAttack : MonoBehaviour
     public EnemyStatsSO enemyStatsSO;
     private float _damage;
 
+    private void Awake()
+    {
+    }
+
     private void Start()
     {
-        _target = GetComponent<EnemyAI>()._target;
         _damage = enemyStatsSO.damage;
+        _target = GetComponent<EnemyAI>()._target;
     }
 
     public void AttackHitEvent() // this is called in the enemy animator attack event

@@ -530,7 +530,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
-  m_Children: []
+  m_Children:
+  - {fileID: 6096830623490843819}
   m_Father: {fileID: 286290629070621638}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1733,6 +1734,12 @@ MonoBehaviour:
   XRControls: {fileID: -944628639613478452, guid: c348712bda248c246b8c49b3db54643f,
     type: 3}
   jumpHeight: 2
+  tinyHopTime: 0.1
+  smallHopTime: 0.3
+  mediumHopTime: 0.6
+  tinyHopDeceleration: 30
+  smallHopDeceleration: 20
+  mediumHopDeceleration: 15
 --- !u!54 &538062170
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2553,7 +2560,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 551015743}
-  - {fileID: 6096830623490843819}
   m_Father: {fileID: 286290628529743159}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2744,12 +2750,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4354614796864770257}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.025, z: 0.109}
-  m_LocalScale: {x: 0.13724001, y: -0.08, z: 0.1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.10000038, z: 0.4359994}
+  m_LocalScale: {x: 0.54896003, y: -0.32, z: 0.39999998}
   m_Children: []
-  m_Father: {fileID: 286290629070621638}
-  m_RootOrder: 1
+  m_Father: {fileID: 551015743}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1827014089215757824
 MeshFilter:
@@ -3210,8 +3216,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 33.37
-  m_fontSizeBase: 33.37
+  m_fontSize: 24.67
+  m_fontSizeBase: 24.67
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -3263,6 +3269,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: RH Rig
+      objectReference: {fileID: 0}
+    - target: {fileID: 4277487607073839493, guid: c65b0b71c4127a84e8a671f75740128a,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 6507668554433572858, guid: c65b0b71c4127a84e8a671f75740128a,
         type: 3}

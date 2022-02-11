@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit;
@@ -25,17 +26,23 @@ public class Weapon : MonoBehaviour
     [Header("Weapon Stats")] [SerializeField] private float range = 100f;
     [SerializeField] private float damage = 25f;
 
+
     private void Awake()
     {
-        // _xrBaseInteractable = GetComponent<XRBaseInteractable>();
-        _leftTriggerAction = leftActionBasedController.activateAction.action;
-        _rightTriggerAction = rightActionBasedController.activateAction.action;
         _spawnAtRuntime = GameObject.FindWithTag("Spawn at Runtime").transform;
         _sfx = GetComponent<AudioSource>();
     }
 
+    private void Start()
+    {
+        // _xrBaseInteractable = GetComponent<XRBaseInteractable>();
+        _leftTriggerAction = leftActionBasedController.activateAction.action;
+        _rightTriggerAction = rightActionBasedController.activateAction.action;
+    }
+
     private void Update()
     {
+        // Now I'm calling shoot from GrabInteractable Activate event
         // if (_xrBaseInteractable.isSelected)
         // {
         //     if (_leftTriggerAction.triggered || _rightTriggerAction.triggered)

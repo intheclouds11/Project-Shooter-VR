@@ -9,17 +9,17 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private GameObject LoseScreen;
     [SerializeField] private GameObject WinScreen;
 
-    private void Awake()
+    private void OnEnable()
     {
-        GameManager.OnGameStateChanged += GameManagerOnOnGameStateChanged;
+        GameManager.GameStateChanged += DisplayMenu;
     }
 
-    private void OnDestroy()
+    private void OnDisable()
     {
-        GameManager.OnGameStateChanged -= GameManagerOnOnGameStateChanged;
+        GameManager.GameStateChanged -= DisplayMenu;
     }
 
-    private void GameManagerOnOnGameStateChanged(GameState state)
+    private void DisplayMenu(GameState state)
     {
         MenuCanvas.SetActive(state == GameState.Lose || state == GameState.Win);
         LoseScreen.SetActive(state == GameState.Lose);
