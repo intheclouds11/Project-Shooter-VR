@@ -1,18 +1,19 @@
 using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit;
 
 public class Weapon : MonoBehaviour
 {
-    [Header("Input")]
-    // private XRBaseInteractable _xrBaseInteractable;
-    [SerializeField]
-    private ActionBasedController leftActionBasedController;
-
-    [SerializeField] private ActionBasedController rightActionBasedController;
-    private InputAction _leftTriggerAction;
-    private InputAction _rightTriggerAction;
+    // [Header("Input")]
+    // // private XRBaseInteractable _xrBaseInteractable;
+    // [SerializeField]
+    // private ActionBasedController leftActionBasedController;
+    //
+    // [SerializeField] private ActionBasedController rightActionBasedController;
+    // private InputAction _leftTriggerAction;
+    // private InputAction _rightTriggerAction;
 
     [Header("VFX")] [SerializeField] private ParticleSystem muzzleFlashVFX;
     [SerializeField] private GameObject hitVFX;
@@ -26,18 +27,25 @@ public class Weapon : MonoBehaviour
     [Header("Weapon Stats")] [SerializeField] private float range = 100f;
     [SerializeField] private float damage = 25f;
 
+    private WeaponAmmo _weaponAmmo;
+    [SerializeField] private PlayerAmmo _playerAmmo;
+    private TextMeshProUGUI _ammoText;
 
     private void Awake()
     {
         _spawnAtRuntime = GameObject.FindWithTag("Spawn at Runtime").transform;
         _sfx = GetComponent<AudioSource>();
+        _weaponAmmo = GetComponent<WeaponAmmo>();
+        _playerAmmo = FindObjectOfType<PlayerAmmo>();
+        _ammoText = GetComponentInChildren<TextMeshProUGUI>();
     }
 
     private void Start()
     {
         // _xrBaseInteractable = GetComponent<XRBaseInteractable>();
-        _leftTriggerAction = leftActionBasedController.activateAction.action;
-        _rightTriggerAction = rightActionBasedController.activateAction.action;
+        // _leftTriggerAction = leftActionBasedController.activateAction.action;
+        // _rightTriggerAction = rightActionBasedController.activateAction.action;
+        _ammoText.text = $"{_weaponAmmo.GetCurrentAmmo()} / {_weaponAmmo.GetMaxAmmo()}";
     }
 
     private void Update()
@@ -54,9 +62,15 @@ public class Weapon : MonoBehaviour
 
     public void Shoot()
     {
-        _sfx.PlayOneShot(shootSFX);
-        PlayMuzzleFlash();
-        ProcessRaycast();
+        if (_weaponAmmo.GetCurrentAmmo() > 0)
+        {
+            _sfx.PlayOneShot(shootSFX);
+            PlayMuzzleFlash();
+            ProcessRaycast();
+            _weaponAmmo.ReduceAmmo();
+            _ammoText.text = $"{_weaponAmmo.GetCurrentAmmo()} / {_weaponAmmo.GetMaxAmmo()}";
+        }
+        
     }
 
     private void PlayMuzzleFlash()
