@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class WeaponAmmo : MonoBehaviour
 {
+    [SerializeField] private AmmoType _ammoType;
     [SerializeField] private int currentAmmo = 10;
     [SerializeField] private int maxAmmo = 20;
 

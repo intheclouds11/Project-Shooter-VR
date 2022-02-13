@@ -12719,6 +12719,30 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1402491289}
+    - target: {fileID: 1056564468, guid: f8dfe880b6249cf46a245b9812b58658, type: 3}
+      propertyPath: _ammoSlots.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1056564468, guid: f8dfe880b6249cf46a245b9812b58658, type: 3}
+      propertyPath: _ammoSlots.Array.data[0].maxAmmo
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1056564468, guid: f8dfe880b6249cf46a245b9812b58658, type: 3}
+      propertyPath: _ammoSlots.Array.data[1].maxAmmo
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 1056564468, guid: f8dfe880b6249cf46a245b9812b58658, type: 3}
+      propertyPath: _ammoSlots.Array.data[2].maxAmmo
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 1056564468, guid: f8dfe880b6249cf46a245b9812b58658, type: 3}
+      propertyPath: _ammoSlots.Array.data[1]._ammoType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1056564468, guid: f8dfe880b6249cf46a245b9812b58658, type: 3}
+      propertyPath: _ammoSlots.Array.data[2]._ammoType
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1133238429, guid: f8dfe880b6249cf46a245b9812b58658, type: 3}
       propertyPath: m_Layer
       value: 7
@@ -12987,11 +13011,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1405772672271624279, guid: 1bcf2c13a6a80694bb760608e805698f,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3768274169476584744, guid: 1bcf2c13a6a80694bb760608e805698f,
         type: 3}

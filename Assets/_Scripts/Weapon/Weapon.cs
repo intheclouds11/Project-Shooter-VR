@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -30,6 +31,13 @@ public class Weapon : MonoBehaviour
     private WeaponAmmo _weaponAmmo;
     [SerializeField] private PlayerAmmo _playerAmmo;
     private TextMeshProUGUI _ammoText;
+    private bool _canShoot;
+    [SerializeField] private float _shootDelay = 0.7f;
+    [SerializeField] private bool _canRapidFire;
+    [SerializeField] private float _fireRate = 0.2f;
+    [SerializeField] private Transform _raycastOrigin;
+
+    private Coroutine _coroutine;
 
     private void Awake()
     {
@@ -48,6 +56,11 @@ public class Weapon : MonoBehaviour
         _ammoText.text = $"{_weaponAmmo.GetCurrentAmmo()} / {_weaponAmmo.GetMaxAmmo()}";
     }
 
+    private void OnEnable()
+    {
+        _canShoot = true;
+    }
+
     private void Update()
     {
         // Now I'm calling shoot from GrabInteractable Activate event
@@ -60,17 +73,36 @@ public class Weapon : MonoBehaviour
         // }
     }
 
-    public void Shoot()
+    public void ShootWithDelay()
     {
-        if (_weaponAmmo.GetCurrentAmmo() > 0)
+        _coroutine = StartCoroutine(Shoot());
+    }
+
+    public void StopShooting()
+    {
+        if (_coroutine == null) return;
+        StopCoroutine(_coroutine);
+        _canShoot = true;
+    }
+
+    public IEnumerator Shoot()
+    {
+        if (_weaponAmmo.GetCurrentAmmo() > 0 && _canShoot)
         {
+            _canShoot = false;
             _sfx.PlayOneShot(shootSFX);
             PlayMuzzleFlash();
             ProcessRaycast();
             _weaponAmmo.ReduceAmmo();
             _ammoText.text = $"{_weaponAmmo.GetCurrentAmmo()} / {_weaponAmmo.GetMaxAmmo()}";
+            yield return new WaitForSeconds(_shootDelay);
+            _canShoot = true;
+            if (_canRapidFire)
+            {
+                yield return new WaitForSeconds(_fireRate);
+                yield return Shoot();
+            }
         }
-        
     }
 
     private void PlayMuzzleFlash()
@@ -80,8 +112,7 @@ public class Weapon : MonoBehaviour
 
     private void ProcessRaycast()
     {
-        RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.forward, out hit, range) && hit.transform != null)
+        if (Physics.Raycast(_raycastOrigin.position, transform.forward, out var hit, range) && hit.transform != null)
         {
             CreateHitImpact(hit);
             if (hit.transform.TryGetComponent(out EnemyHealth enemyHealth))

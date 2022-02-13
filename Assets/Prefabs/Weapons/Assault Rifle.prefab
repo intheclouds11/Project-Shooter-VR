@@ -234,6 +234,36 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &1344369149
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1344369150}
+  m_Layer: 6
+  m_Name: Raycast Origin
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1344369150
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1344369149}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.097, z: 0.662}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1405772672269763529}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1405772672269471911
 GameObject:
   m_ObjectHideFlags: 0
@@ -272,6 +302,7 @@ Transform:
   - {fileID: 7546250964259981953}
   - {fileID: 5389843543806352269}
   - {fileID: 412404838}
+  - {fileID: 1344369150}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -501,7 +532,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 3768274169476584746}
         m_TargetAssemblyTypeName: Weapon, Assembly-CSharp
-        m_MethodName: Shoot
+        m_MethodName: ShootWithDelay
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -513,7 +544,19 @@ MonoBehaviour:
         m_CallState: 2
   m_Deactivated:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3768274169476584746}
+        m_TargetAssemblyTypeName: Weapon, Assembly-CSharp
+        m_MethodName: StopShooting
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Shoot
+          m_BoolArgument: 0
+        m_CallState: 2
   m_OnFirstHoverEntered:
     m_PersistentCalls:
       m_Calls: []
@@ -598,6 +641,10 @@ MonoBehaviour:
   range: 100
   damage: 25
   _playerAmmo: {fileID: 0}
+  _shootDelay: 0
+  _canRapidFire: 1
+  _fireRate: 0.1
+  _raycastOrigin: {fileID: 1344369150}
 --- !u!114 &651293619
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -610,6 +657,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a04b9eb14a31f1d40aaaec498800474f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _ammoType: 0
   currentAmmo: 35
   maxAmmo: 35
 --- !u!1 &2297496634001199219
