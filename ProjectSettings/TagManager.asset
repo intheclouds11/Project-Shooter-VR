@@ -10,6 +10,8 @@ TagManager:
   - Ramp
   - Switch
   - Weapon
+  - Pump
+  - Hand
   layers:
   - Default
   - TransparentFX

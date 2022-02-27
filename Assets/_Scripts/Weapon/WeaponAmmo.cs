@@ -4,26 +4,33 @@ using UnityEngine;
 
 public class WeaponAmmo : MonoBehaviour
 {
-    [SerializeField] private AmmoType _ammoType;
+    [SerializeField] private WeaponType _weaponType;
     [SerializeField] private int currentAmmo = 10;
     [SerializeField] private int maxAmmo = 20;
 
-    public int GetCurrentAmmo()
+    public int GetCurrentAmmo(WeaponType weaponType)
     {
         return currentAmmo;
     }
 
-    public int GetMaxAmmo()
+    public int GetMaxAmmo(WeaponType weaponType)
     {
         return maxAmmo;
     }
 
-    public void AddAmmo(int amount)
+    public void Reload(WeaponType weaponType, int amount)
     {
-        currentAmmo += amount;
+        if (weaponType == _weaponType)
+        {
+            currentAmmo += amount;
+        }
+        else
+        {
+            Debug.Log("!!Tried adding incorrect ammo type!!");
+        }
     }
 
-    public void ReduceAmmo()
+    public void ReduceAmmo(WeaponType weaponType)
     {
         currentAmmo--;
     }

@@ -481,7 +481,19 @@ MonoBehaviour:
       m_Calls: []
   m_SelectEntered:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4774690236992981276}
+        m_TargetAssemblyTypeName: Weapon, Assembly-CSharp
+        m_MethodName: HoldingWeapon
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_SelectExited:
     m_PersistentCalls:
       m_Calls: []
@@ -490,7 +502,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 4774690236992981276}
         m_TargetAssemblyTypeName: Weapon, Assembly-CSharp
-        m_MethodName: ShootWithDelay
+        m_MethodName: ShootSemiAuto
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -584,12 +596,11 @@ MonoBehaviour:
   shootSFX: {fileID: 8300000, guid: bb4eb0597407cb34ba14056aa26e3f39, type: 3}
   emptyMagSFX: {fileID: 0}
   reloadSFX: {fileID: 0}
+  pumpSFX: {fileID: 0}
   range: 100
   damage: 35
-  _playerAmmo: {fileID: 0}
-  _shootDelay: 0.1
-  _canRapidFire: 0
-  _fireRate: 0.2
+  _weaponType: 1
+  _autoFireRate: 0.2
   _raycastOrigin: {fileID: 3905767342287787819}
 --- !u!114 &4774690236992981277
 MonoBehaviour:
@@ -603,7 +614,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a04b9eb14a31f1d40aaaec498800474f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _ammoType: 1
+  _weaponType: 1
   currentAmmo: 15
   maxAmmo: 15
 --- !u!1 &4774690238271361236

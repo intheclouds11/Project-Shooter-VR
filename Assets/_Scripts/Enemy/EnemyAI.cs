@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class EnemyAI : MonoBehaviour
 {
     public EnemyStatsSO enemyStatsSO;
-    private float _agroRange;
+    [SerializeField] private float _agroRange;
     private float _turningSpeed;
 
     private NavMeshAgent _navMeshAgent;
@@ -32,7 +32,6 @@ public class EnemyAI : MonoBehaviour
 
     private void Start()
     {
-        _agroRange = enemyStatsSO.agroRange;
         _turningSpeed = enemyStatsSO.turningSpeed;
     }
 

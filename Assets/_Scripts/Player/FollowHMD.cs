@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponHolster : MonoBehaviour
+public class FollowHMD : MonoBehaviour
 {
     [SerializeField] private Transform HMD;
     [SerializeField] private float verticalOffset = -0.5f;
@@ -14,8 +14,10 @@ public class WeaponHolster : MonoBehaviour
     {
         transform.position = new Vector3(HMD.position.x + horizontalOffset, HMD.position.y + verticalOffset,
             HMD.position.z + depth);
+        
+        transform.eulerAngles = new Vector3(0, HMD.eulerAngles.y, 0);
 
-        _transformEulerAngles = transform.eulerAngles;
-        _transformEulerAngles.y = HMD.eulerAngles.y;
+        // _transformEulerAngles = new Vector3(0, transform.eulerAngles.y, transform.eulerAngles.z);
+        // transform.eulerAngles = _transformEulerAngles;
     }
 }

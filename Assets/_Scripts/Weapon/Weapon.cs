@@ -24,28 +24,28 @@ public class Weapon : MonoBehaviour
     [SerializeField] private AudioClip shootSFX;
     [SerializeField] private AudioClip emptyMagSFX;
     [SerializeField] private AudioClip reloadSFX;
+    [SerializeField] private AudioClip pumpSFX;
 
     [Header("Weapon Stats")] [SerializeField] private float range = 100f;
     [SerializeField] private float damage = 25f;
 
     private WeaponAmmo _weaponAmmo;
-    [SerializeField] private PlayerAmmo _playerAmmo;
+    [SerializeField] private WeaponType _weaponType;
     private TextMeshProUGUI _ammoText;
-    private bool _canShoot;
-    [SerializeField] private float _shootDelay = 0.7f;
-    [SerializeField] private bool _canRapidFire;
-    [SerializeField] private float _fireRate = 0.2f;
+    private bool _canShoot = true;
+    [SerializeField] private float _autoFireRate = 0.2f;
     [SerializeField] private Transform _raycastOrigin;
+    private PlayerAmmo _playerAmmo;
 
-    private Coroutine _coroutine;
+    private IEnumerator _shootCoroutine;
 
     private void Awake()
     {
         _spawnAtRuntime = GameObject.FindWithTag("Spawn at Runtime").transform;
         _sfx = GetComponent<AudioSource>();
         _weaponAmmo = GetComponent<WeaponAmmo>();
-        _playerAmmo = FindObjectOfType<PlayerAmmo>();
         _ammoText = GetComponentInChildren<TextMeshProUGUI>();
+        _playerAmmo = FindObjectOfType<PlayerAmmo>();
     }
 
     private void Start()
@@ -53,12 +53,7 @@ public class Weapon : MonoBehaviour
         // _xrBaseInteractable = GetComponent<XRBaseInteractable>();
         // _leftTriggerAction = leftActionBasedController.activateAction.action;
         // _rightTriggerAction = rightActionBasedController.activateAction.action;
-        _ammoText.text = $"{_weaponAmmo.GetCurrentAmmo()} / {_weaponAmmo.GetMaxAmmo()}";
-    }
-
-    private void OnEnable()
-    {
-        _canShoot = true;
+        _ammoText.text = $"{_weaponAmmo.GetCurrentAmmo(_weaponType)} / {_weaponAmmo.GetMaxAmmo(_weaponType)}";
     }
 
     private void Update()
@@ -73,35 +68,67 @@ public class Weapon : MonoBehaviour
         // }
     }
 
-    public void ShootWithDelay()
+    public void HoldingWeapon()
     {
-        _coroutine = StartCoroutine(Shoot());
+        _playerAmmo.ChangeAmmoBeltTextToCurrentWeapon(_weaponType);
     }
 
-    public void StopShooting()
+    public void ShootSemiAuto()
     {
-        if (_coroutine == null) return;
-        StopCoroutine(_coroutine);
-        _canShoot = true;
+        if (_weaponAmmo.GetCurrentAmmo(_weaponType) > 0)
+        {
+            _sfx.PlayOneShot(shootSFX);
+            PlayMuzzleFlash();
+            ProcessRaycast();
+            _weaponAmmo.ReduceAmmo(_weaponType);
+            _ammoText.text = $"{_weaponAmmo.GetCurrentAmmo(_weaponType)} / {_weaponAmmo.GetMaxAmmo(_weaponType)}";
+        }
     }
 
-    public IEnumerator Shoot()
+    public void ShootPumpAction()
     {
-        if (_weaponAmmo.GetCurrentAmmo() > 0 && _canShoot)
+        if (_weaponAmmo.GetCurrentAmmo(_weaponType) > 0 && _canShoot)
         {
             _canShoot = false;
             _sfx.PlayOneShot(shootSFX);
             PlayMuzzleFlash();
             ProcessRaycast();
-            _weaponAmmo.ReduceAmmo();
-            _ammoText.text = $"{_weaponAmmo.GetCurrentAmmo()} / {_weaponAmmo.GetMaxAmmo()}";
-            yield return new WaitForSeconds(_shootDelay);
+            _weaponAmmo.ReduceAmmo(_weaponType);
+            _ammoText.text = $"{_weaponAmmo.GetCurrentAmmo(_weaponType)} / {_weaponAmmo.GetMaxAmmo(_weaponType)}";
+        }
+    }
+
+    public void PumpAction()
+    {
+        if (!_canShoot)
+        {
+            _sfx.PlayOneShot(pumpSFX);
             _canShoot = true;
-            if (_canRapidFire)
-            {
-                yield return new WaitForSeconds(_fireRate);
-                yield return Shoot();
-            }
+        }
+    }
+
+    public void ShootRapidFireCoroutine()
+    {
+        _shootCoroutine = ShootRapidFire();
+        StartCoroutine(_shootCoroutine);
+    }
+
+    public void StopShooting()
+    {
+        StopCoroutine(_shootCoroutine);
+    }
+
+    private IEnumerator ShootRapidFire()
+    {
+        if (_weaponAmmo.GetCurrentAmmo(_weaponType) > 0)
+        {
+            _sfx.PlayOneShot(shootSFX);
+            PlayMuzzleFlash();
+            ProcessRaycast();
+            _weaponAmmo.ReduceAmmo(_weaponType);
+            _ammoText.text = $"{_weaponAmmo.GetCurrentAmmo(_weaponType)} / {_weaponAmmo.GetMaxAmmo(_weaponType)}";
+            yield return new WaitForSeconds(_autoFireRate);
+            yield return ShootRapidFire();
         }
     }
 

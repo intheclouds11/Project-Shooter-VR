@@ -2,40 +2,92 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerAmmo : MonoBehaviour
 {
     [SerializeField] private AmmoSlot[] _ammoSlots;
+    private Text _ammoBeltText;
+    private int _currentWeaponSlotAmmo;
+    private int _currentWeaponSlotMaxAmmo;
+    private WeaponType _currentWeaponType;
 
-    // TODO: will delete during course
-    [SerializeField] private int currentAmmo = 10;
-    [SerializeField] private int maxAmmo = 20;
-    
     [Serializable]
     private class AmmoSlot
     {
-        public AmmoType _ammoType;
+        public WeaponType _WeaponType;
         public int currentAmmo;
         public int maxAmmo;
     }
 
-    public int GetCurrentAmmo()
+    private void Start()
     {
-        return currentAmmo;
+        _ammoBeltText = GetComponentInChildren<Text>();
     }
 
-    public int GetMaxAmmo()
+    public void ChangeAmmoBeltTextToCurrentWeapon(WeaponType weaponType)
     {
-        return maxAmmo;
+        _currentWeaponType = weaponType;
+        _currentWeaponSlotAmmo = GetAmmoSlot(weaponType).currentAmmo;
+        _currentWeaponSlotMaxAmmo = GetAmmoSlot(weaponType).maxAmmo;
+        _ammoBeltText.text = $"{weaponType} Ammo: {_currentWeaponSlotAmmo} / {_currentWeaponSlotMaxAmmo}";
     }
 
-    public void AddAmmo(int amount)
+    public int GetSlotAmmoAmount(WeaponType weaponType)
     {
-        currentAmmo += amount;
+        return GetAmmoSlot(weaponType).currentAmmo;
     }
 
-    public void ReduceAmmo()
+    public int GetSlotMaxAmmoAmount(WeaponType weaponType)
     {
-        currentAmmo--;
+        return GetAmmoSlot(weaponType).maxAmmo;
+    }
+
+    public void AddAmmo(WeaponType weaponType, int amount)
+    {
+        GetAmmoSlot(weaponType).currentAmmo += amount;
+        if (_currentWeaponType == weaponType)
+        {
+            _ammoBeltText.text = $"{weaponType} Ammo: {GetAmmoSlot(weaponType).currentAmmo} / {_currentWeaponSlotMaxAmmo}";
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Hand"))
+        {
+            RemoveAmmoFromSlot();
+            _ammoBeltText.text =
+                $"{_currentWeaponType} Ammo: {GetSlotAmmoAmount(_currentWeaponType)} / {GetSlotMaxAmmoAmount(_currentWeaponType)}";
+        }
+    }
+
+    public void RemoveAmmoFromSlot()
+    {
+        if (GetSlotAmmoAmount(_currentWeaponType) >= 10)
+        {
+            GetAmmoSlot(_currentWeaponType).currentAmmo -= 10;
+        }
+        else if (GetSlotAmmoAmount(_currentWeaponType) > 0)
+        {
+            GetAmmoSlot(_currentWeaponType).currentAmmo -= GetAmmoSlot(_currentWeaponType).currentAmmo;
+        }
+        else
+        {
+            Debug.Log("No ammo left in ammo belt!!");
+        }
+    }
+
+    private AmmoSlot GetAmmoSlot(WeaponType weaponType)
+    {
+        foreach (var slot in _ammoSlots)
+        {
+            if (slot._WeaponType == weaponType)
+            {
+                return slot;
+            }
+        }
+
+        return null;
     }
 }
