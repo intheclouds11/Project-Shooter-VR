@@ -1,8 +1,4 @@
 ﻿
-
 public enum WeaponType
-{
-    Assault,
-    Handgun,
-    Shotgun
-}
+{ Assault, Handgun, Shotgun }
+

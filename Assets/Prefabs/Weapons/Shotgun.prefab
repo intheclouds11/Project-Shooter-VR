@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 171050965017239091}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: body_5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1653349604159397910}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: barrel_11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -73,7 +73,7 @@ GameObject:
   - component: {fileID: 7300566155957984199}
   - component: {fileID: 4812378639727591799}
   - component: {fileID: 1122074608894955578}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Object_26
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -155,7 +155,7 @@ GameObject:
   - component: {fileID: 5552776764677567941}
   - component: {fileID: 4745325809856155776}
   - component: {fileID: 5493822906689023753}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Object_8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -235,7 +235,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6350955742268850218}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: triggerbody_6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -268,7 +268,7 @@ GameObject:
   - component: {fileID: 5826419883441975708}
   - component: {fileID: 995179891688240152}
   - component: {fileID: 7684124214575866654}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Object_22
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -348,7 +348,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3802433413918234769}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: shell__injector_button_14
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -379,9 +379,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2644405171043210878}
-  - component: {fileID: 2644405171043210822}
-  - component: {fileID: 2644405171043210823}
-  - component: {fileID: 2644405171043210820}
   - component: {fileID: 2644405171043210821}
   - component: {fileID: 2644405171043210874}
   - component: {fileID: 2644405171043210875}
@@ -411,72 +408,10 @@ Transform:
   - {fileID: 2644405171922405891}
   - {fileID: 1377524746419936633}
   - {fileID: 3843776805556699907}
+  - {fileID: 8115434221571568163}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -119.031, z: 0}
---- !u!33 &2644405171043210822
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2644405171043210879}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &2644405171043210823
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2644405171043210879}
-  m_Enabled: 0
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &2644405171043210820
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2644405171043210879}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &2644405171043210821
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -607,7 +542,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   m_InteractionLayers:
-    m_Bits: 1
+    m_Bits: 2
   m_SelectMode: 0
   m_CustomReticle: {fileID: 0}
   m_FirstHoverEntered:
@@ -691,7 +626,7 @@ MonoBehaviour:
   m_OnDeactivate:
     m_PersistentCalls:
       m_Calls: []
-  m_AttachTransform: {fileID: 0}
+  m_AttachTransform: {fileID: 8115434221571568163}
   m_AttachEaseInTime: 0.15
   m_MovementType: 2
   m_VelocityDamping: 1
@@ -742,6 +677,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   muzzleFlashVFX: {fileID: 2962363326745003308}
   hitVFX: {fileID: 7091923357832244082, guid: 8930b8363ad6b4a46a16a2b4065c12af, type: 3}
+  _pumpAudioSource: {fileID: 861384691}
   shootSFX: {fileID: 8300000, guid: bb4eb0597407cb34ba14056aa26e3f39, type: 3}
   emptyMagSFX: {fileID: 0}
   reloadSFX: {fileID: 0}
@@ -777,7 +713,7 @@ GameObject:
   - component: {fileID: 2644405171273623438}
   - component: {fileID: 2644405171273623432}
   - component: {fileID: 2644405171273623433}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Text (ammo)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -912,7 +848,7 @@ GameObject:
   - component: {fileID: 2644405171922405900}
   - component: {fileID: 2644405171922405901}
   - component: {fileID: 2644405171922405890}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Canvas (ammo)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1097,7 +1033,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5617122816655036867}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: mid-body_9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1130,7 +1066,7 @@ GameObject:
   - component: {fileID: 3282613136859941775}
   - component: {fileID: 4182482539631455265}
   - component: {fileID: 5133526513711222004}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Object_6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1213,7 +1149,7 @@ GameObject:
   - component: {fileID: 4860152788017824539}
   - component: {fileID: 7495242174775605971}
   - component: {fileID: 3709592071611840186}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Canvas (pump)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1310,7 +1246,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 139649096398732936}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: hanger_8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1343,7 +1279,7 @@ GameObject:
   - component: {fileID: 4305824450718770303}
   - component: {fileID: 4436925768316877237}
   - component: {fileID: 1715074980745611204}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Object_18
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1423,8 +1359,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8041745081054976884}
-  m_Layer: 0
-  m_Name: Shotgun Model
+  m_Layer: 6
+  m_Name: Shotgun mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1470,7 +1406,8 @@ GameObject:
   - component: {fileID: 5332175183184169515}
   - component: {fileID: 4018168706077538197}
   - component: {fileID: 2252195077675843865}
-  m_Layer: 7
+  - component: {fileID: 861384691}
+  m_Layer: 6
   m_Name: Object_14
   m_TagString: Pump
   m_Icon: {fileID: 0}
@@ -1572,7 +1509,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   m_InteractionLayers:
-    m_Bits: 1
+    m_Bits: 4
   m_SelectMode: 0
   m_CustomReticle: {fileID: 0}
   m_FirstHoverEntered:
@@ -1644,6 +1581,102 @@ MonoBehaviour:
   m_OnDeactivate:
     m_PersistentCalls:
       m_Calls: []
+--- !u!82 &861384691
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4319997694768539709}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 0.796
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 10
+  Pan2D: 0
+  rolloffMode: 1
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &4466171300266938326
 GameObject:
   m_ObjectHideFlags: 0
@@ -1653,7 +1686,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4875708433606821302}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: shell_inject_17
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1686,7 +1719,7 @@ GameObject:
   - component: {fileID: 5508843068582673890}
   - component: {fileID: 4437233059458668412}
   - component: {fileID: 5596561942745028496}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Object_20
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1768,7 +1801,7 @@ GameObject:
   - component: {fileID: 2849504701842003155}
   - component: {fileID: 8858021462794477865}
   - component: {fileID: 1084928995018656279}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Object_12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1848,7 +1881,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6078120659995062557}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: pump_barrel_12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1879,7 +1912,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1377524746419936633}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Raycast Origin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1911,7 +1944,7 @@ GameObject:
   - component: {fileID: 8192273575119531612}
   - component: {fileID: 339477579392659110}
   - component: {fileID: 8849695288386131255}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Object_16
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1991,7 +2024,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5692215418871830266}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: scope_13
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2022,7 +2055,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5223349986803520625}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: trigger_7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2055,7 +2088,7 @@ GameObject:
   - component: {fileID: 3528470069838966136}
   - component: {fileID: 4637825731020425216}
   - component: {fileID: 5470679479092956461}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Object_10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2137,7 +2170,7 @@ GameObject:
   - component: {fileID: 2171689921851920580}
   - component: {fileID: 6603574139532288220}
   - component: {fileID: 744794779032281948}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Object_24
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2219,7 +2252,7 @@ GameObject:
   - component: {fileID: 4389592086383403621}
   - component: {fileID: 7858657166409093857}
   - component: {fileID: 8738274208774960730}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Object_28
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2299,7 +2332,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6770305864159914278}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: bolt_15
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2330,7 +2363,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5363263068870566607}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: style_16
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2361,7 +2394,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8763375650133503082}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PUMP ACTION
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2394,7 +2427,7 @@ GameObject:
   - component: {fileID: 5346337669553134738}
   - component: {fileID: 4328211228107260047}
   - component: {fileID: 5104476684735795012}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Text (pump)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2528,7 +2561,7 @@ GameObject:
   - component: {fileID: 5700050138336921013}
   - component: {fileID: 4418803218051289523}
   - component: {fileID: 4031829857731841415}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Object_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2608,7 +2641,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2574958697245203912}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Colliders
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2630,6 +2663,36 @@ Transform:
   - {fileID: 2644405172504405635}
   m_Father: {fileID: 2644405171043210878}
   m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8891258902878340334
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8115434221571568163}
+  m_Layer: 6
+  m_Name: Attach
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8115434221571568163
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8891258902878340334}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2644405171043210878}
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2644405171610929484
 PrefabInstance:
@@ -2715,15 +2778,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 005258fbd6ed20644a050c65ff1e4fc5, type: 3}
---- !u!198 &2962363326745003308 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 985933992892337248, guid: 005258fbd6ed20644a050c65ff1e4fc5,
-    type: 3}
-  m_PrefabInstance: {fileID: 2644405171610929484}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2962363326745003306 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 985933992892337254, guid: 005258fbd6ed20644a050c65ff1e4fc5,
+    type: 3}
+  m_PrefabInstance: {fileID: 2644405171610929484}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &2962363326745003308 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 985933992892337248, guid: 005258fbd6ed20644a050c65ff1e4fc5,
     type: 3}
   m_PrefabInstance: {fileID: 2644405171610929484}
   m_PrefabAsset: {fileID: 0}

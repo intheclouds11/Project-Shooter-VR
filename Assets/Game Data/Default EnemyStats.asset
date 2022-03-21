@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df96aace8fc10c4459d8761ab2a144c6, type: 3}
   m_Name: Default EnemyStats
   m_EditorClassIdentifier: 
-  health: 100
+  health: 200
   damage: 20
   agroRange: 7
   turningSpeed: 5

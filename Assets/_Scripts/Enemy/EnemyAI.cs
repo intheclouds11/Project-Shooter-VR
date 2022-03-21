@@ -1,5 +1,6 @@
 using System;
 using System.Security.Cryptography.X509Certificates;
+using intheclouds;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -18,8 +19,8 @@ public class EnemyAI : MonoBehaviour
     private static readonly int IdleAnimation = Animator.StringToHash("idle");
     private static readonly int MoveAnimation = Animator.StringToHash("move");
 
-    public PlayerHealth _target;
-    public EnemyHealth health;
+    internal PlayerHealth _target;
+    private EnemyHealth health;
 
 
     private void Awake()
@@ -47,7 +48,15 @@ public class EnemyAI : MonoBehaviour
 
     private void Update()
     {
+        if (health.IsDead())
+        {
+            _navMeshAgent.enabled = false;
+            enabled = false;
+            return;
+        }
+
         _distanceToTarget = Vector3.Distance(_target.transform.position, this.transform.position);
+
         if (_isProvoked)
         {
             EngageTarget();
@@ -114,3 +123,4 @@ public class EnemyAI : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, _agroRange);
     }
 }
+

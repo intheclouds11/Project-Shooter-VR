@@ -1,6 +1,5 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,6 +10,7 @@ public class PlayerAmmo : MonoBehaviour
     private int _currentWeaponSlotAmmo;
     private int _currentWeaponSlotMaxAmmo;
     private WeaponType _currentWeaponType;
+    [SerializeField] GameObject _ammoMag;
 
     [Serializable]
     private class AmmoSlot
@@ -48,7 +48,8 @@ public class PlayerAmmo : MonoBehaviour
         GetAmmoSlot(weaponType).currentAmmo += amount;
         if (_currentWeaponType == weaponType)
         {
-            _ammoBeltText.text = $"{weaponType} Ammo: {GetAmmoSlot(weaponType).currentAmmo} / {_currentWeaponSlotMaxAmmo}";
+            _ammoBeltText.text =
+                $"{weaponType} Ammo: {GetAmmoSlot(weaponType).currentAmmo} / {_currentWeaponSlotMaxAmmo}";
         }
     }
 
@@ -56,13 +57,16 @@ public class PlayerAmmo : MonoBehaviour
     {
         if (other.CompareTag("Hand"))
         {
+            Instantiate(_ammoMag, transform.position, quaternion.identity);
+            _ammoMag.GetComponent<AmmoMag>()._weaponType = _currentWeaponType;
+            // _ammoMag._ammoAmount = 
             RemoveAmmoFromSlot();
             _ammoBeltText.text =
                 $"{_currentWeaponType} Ammo: {GetSlotAmmoAmount(_currentWeaponType)} / {GetSlotMaxAmmoAmount(_currentWeaponType)}";
         }
     }
 
-    public void RemoveAmmoFromSlot()
+    private void RemoveAmmoFromSlot()
     {
         if (GetSlotAmmoAmount(_currentWeaponType) >= 10)
         {
