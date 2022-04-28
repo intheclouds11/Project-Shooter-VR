@@ -11,8 +11,13 @@ TagManager:
   - Switch
   - Weapon
   - Pump
-  - Hand
   - Ammo Mag
+  - Right Hand
+  - Left Hand
+  - Hand
+  - Assault Rifle
+  - Shotgun
+  - Handgun
   layers:
   - Default
   - TransparentFX
@@ -23,8 +28,8 @@ TagManager:
   - Ray Grab
   - Direct Grab
   - Head
-  - 
-  - 
+  - Hand physics
+  - EnvironmentInteract
   - 
   - 
   - 

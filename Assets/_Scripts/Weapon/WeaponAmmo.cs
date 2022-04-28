@@ -1,12 +1,21 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using intheclouds;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class WeaponAmmo : MonoBehaviour
 {
-    [SerializeField] private WeaponType _weaponType;
+    [FormerlySerializedAs("_weaponType")] [SerializeField] private WeaponType weaponType;
     [SerializeField] private int currentAmmo = 10;
     [SerializeField] private int maxAmmo = 20;
+    private Weapon weapon;
+
+    private void Start()
+    {
+        weapon = GetComponentInParent<Weapon>();
+    }
 
     public int GetCurrentAmmo(WeaponType weaponType)
     {
@@ -20,9 +29,11 @@ public class WeaponAmmo : MonoBehaviour
 
     public void Reload(WeaponType weaponType, int amount)
     {
-        if (weaponType == _weaponType)
+        if (weaponType == this.weaponType)
         {
             currentAmmo += amount;
+            weapon.UpdateAmmoDisplay();
+            weapon.PlayReloadSFX();
         }
         else
         {
@@ -33,5 +44,6 @@ public class WeaponAmmo : MonoBehaviour
     public void ReduceAmmo(WeaponType weaponType)
     {
         currentAmmo--;
+        weapon.UpdateAmmoDisplay();
     }
 }

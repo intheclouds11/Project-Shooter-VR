@@ -12,7 +12,7 @@ namespace intheclouds
         [SerializeField] public float maxHealth;
 
         public event Action Damaged; // use for other classes to know when player is damaged
-    
+
         private void Start()
         {
             maxHealth = playerStatsSO.health;

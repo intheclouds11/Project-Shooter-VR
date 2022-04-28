@@ -14,7 +14,7 @@ public class XROffsetGrabInteractable : XRGrabInteractable
             grab.transform.SetParent(transform, false);
             attachTransform = grab.transform;
         }
-
+        
         _initialAttachLocalPos = attachTransform.localPosition;
         _initialAttachLocalRot = attachTransform.localRotation;
     }

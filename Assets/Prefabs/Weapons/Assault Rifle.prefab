@@ -277,7 +277,6 @@ GameObject:
   - component: {fileID: 3768274169476584748}
   - component: {fileID: 3768274169476584744}
   - component: {fileID: 3768274169476584746}
-  - component: {fileID: 651293619}
   m_Layer: 6
   m_Name: Assault Rifle
   m_TagString: Weapon
@@ -294,7 +293,7 @@ Transform:
   m_GameObject: {fileID: 1405772672269471911}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.778, y: 0.742, z: 1.983}
-  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
+  m_LocalScale: {x: 0.82176006, y: 0.82176006, z: 0.82176006}
   m_Children:
   - {fileID: 4837630008412772994}
   - {fileID: 7546250964259981953}
@@ -563,7 +562,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  m_ThrowVelocityScale: 2
+  m_ThrowVelocityScale: 1.5
   m_ThrowAngularVelocityScale: 1
   m_ForceGravityOnDetach: 0
   m_RetainTransformParent: 1
@@ -582,31 +581,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   muzzleFlashVFX: {fileID: 5389843543806352267}
   hitVFX: {fileID: 7091923357832244082, guid: 8930b8363ad6b4a46a16a2b4065c12af, type: 3}
-  _pumpAudioSource: {fileID: 0}
-  shootSFX: {fileID: 8300000, guid: bb4eb0597407cb34ba14056aa26e3f39, type: 3}
+  spawnAtRuntime: {fileID: 0}
+  pumpAudioSource: {fileID: 0}
+  shootSFX: {fileID: 8300000, guid: d69f4b68ce34d1a4c9ffee319c0355fa, type: 3}
   emptyMagSFX: {fileID: 0}
-  reloadSFX: {fileID: 0}
+  reloadSFX: {fileID: 8300000, guid: 6e9db9240cbb96d488c19662eb425d0f, type: 3}
   pumpSFX: {fileID: 0}
   range: 100
   damage: 25
-  _weaponType: 0
-  _autoFireRate: 0.1
-  _raycastOrigin: {fileID: 1344369150}
---- !u!114 &651293619
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1405772672269471911}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a04b9eb14a31f1d40aaaec498800474f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _weaponType: 0
-  currentAmmo: 35
-  maxAmmo: 35
+  weaponType: 0
+  autoFireRate: 0.2
+  raycastOrigin: {fileID: 1344369150}
 --- !u!1 &2297496634001199219
 GameObject:
   m_ObjectHideFlags: 0
@@ -661,9 +646,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4818684612001606483}
   - component: {fileID: 683522246789547292}
+  - component: {fileID: 1082800892}
   m_Layer: 6
   m_Name: magazine
-  m_TagString: Untagged
+  m_TagString: Assault Rifle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -695,6 +681,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.037465096, y: 0.13939026, z: 0.06525196}
   m_Center: {x: 0.00022649765, y: -0.014703874, z: -0.03322768}
+--- !u!114 &1082800892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3706326654144708185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a04b9eb14a31f1d40aaaec498800474f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponType: 0
+  currentAmmo: 35
+  maxAmmo: 35
 --- !u!1 &4074816473743578775
 GameObject:
   m_ObjectHideFlags: 0
@@ -718,13 +719,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4074816473743578775}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0.14428373, y: -0, z: -0, w: 0.9895364}
+  m_LocalPosition: {x: -0.0163, y: 0.0411, z: 0.0615}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1405772672269763529}
   m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -16.592, y: 0, z: 0}
 --- !u!1 &6398888380472193137
 GameObject:
   m_ObjectHideFlags: 0

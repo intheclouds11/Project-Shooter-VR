@@ -314,7 +314,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8212000258147581019}
   m_Layer: 0
-  m_Name: Door (locked)
+  m_Name: Door (hinged + keypad)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

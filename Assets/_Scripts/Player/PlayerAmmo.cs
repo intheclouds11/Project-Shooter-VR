@@ -1,7 +1,11 @@
 using System;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
+using UnityEngine.XR.Interaction.Toolkit;
+using XRController = UnityEngine.InputSystem.XR.XRController;
 
 public class PlayerAmmo : MonoBehaviour
 {
@@ -10,7 +14,11 @@ public class PlayerAmmo : MonoBehaviour
     private int _currentWeaponSlotAmmo;
     private int _currentWeaponSlotMaxAmmo;
     private WeaponType _currentWeaponType;
-    [SerializeField] GameObject _ammoMag;
+    [SerializeField] GameObject _ammoMagPrefab;
+
+    [SerializeField] InputActionAsset playerControlsVR;
+    private InputAction rhGrip;
+    private InputAction lhGrip;
 
     [Serializable]
     private class AmmoSlot
@@ -23,6 +31,18 @@ public class PlayerAmmo : MonoBehaviour
     private void Start()
     {
         _ammoBeltText = GetComponentInChildren<Text>();
+        EnableVRControls();
+    }
+
+    private void EnableVRControls()
+    {
+        var gameplayActionMapRH = playerControlsVR.FindActionMap("XRI RightHand");
+        var gameplayActionMapLH = playerControlsVR.FindActionMap("XRI LeftHand");
+
+        rhGrip = gameplayActionMapRH.FindAction("Select");
+        rhGrip.Enable();
+        lhGrip = gameplayActionMapLH.FindAction("Select");
+        lhGrip.Enable();
     }
 
     public void ChangeAmmoBeltTextToCurrentWeapon(WeaponType weaponType)
@@ -55,30 +75,56 @@ public class PlayerAmmo : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Hand"))
+        if (other.CompareTag("Right Hand"))
         {
-            Instantiate(_ammoMag, transform.position, quaternion.identity);
-            _ammoMag.GetComponent<AmmoMag>()._weaponType = _currentWeaponType;
-            // _ammoMag._ammoAmount = 
-            RemoveAmmoFromSlot();
-            _ammoBeltText.text =
-                $"{_currentWeaponType} Ammo: {GetSlotAmmoAmount(_currentWeaponType)} / {GetSlotMaxAmmoAmount(_currentWeaponType)}";
+            Debug.Log("player ammo trigger");
+            rhGrip.performed += SpawnAmmoMag;
+        }
+        else if (other.CompareTag("Left Hand"))
+        {
+            Debug.Log("player ammo trigger");
+            lhGrip.performed += SpawnAmmoMag;
         }
     }
 
-    private void RemoveAmmoFromSlot()
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Right Hand"))
+        {
+            rhGrip.performed -= SpawnAmmoMag;
+        }
+        else if (other.CompareTag("Left Hand"))
+        {
+            lhGrip.performed -= SpawnAmmoMag;
+        }
+    }
+
+    private void SpawnAmmoMag(InputAction.CallbackContext obj)
+    {
+        Debug.Log("spawn player ammo");
+        Instantiate(_ammoMagPrefab, transform.position, quaternion.identity);
+        AmmoMag ammoMag = _ammoMagPrefab.GetComponent<AmmoMag>();
+        ammoMag._weaponType = _currentWeaponType;
+        ammoMag._ammoAmount = RemoveAmmoFromSlot();
+        ammoMag.GetComponentInChildren<Text>().text = $"{ammoMag._ammoAmount + " " + ammoMag._weaponType + " Rounds"}";
+        _ammoBeltText.text =
+            $"{_currentWeaponType} Ammo: {GetSlotAmmoAmount(_currentWeaponType)} / {GetSlotMaxAmmoAmount(_currentWeaponType)}";
+    }
+
+    private int RemoveAmmoFromSlot()
     {
         if (GetSlotAmmoAmount(_currentWeaponType) >= 10)
         {
-            GetAmmoSlot(_currentWeaponType).currentAmmo -= 10;
+            return GetAmmoSlot(_currentWeaponType).currentAmmo -= 10;
         }
         else if (GetSlotAmmoAmount(_currentWeaponType) > 0)
         {
-            GetAmmoSlot(_currentWeaponType).currentAmmo -= GetAmmoSlot(_currentWeaponType).currentAmmo;
+            return GetAmmoSlot(_currentWeaponType).currentAmmo -= GetAmmoSlot(_currentWeaponType).currentAmmo;
         }
         else
         {
             Debug.Log("No ammo left in ammo belt!!");
+            return 0;
         }
     }
 

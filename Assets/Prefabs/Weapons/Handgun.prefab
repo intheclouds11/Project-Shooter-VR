@@ -10,9 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 557414696}
   - component: {fileID: 557414697}
+  - component: {fileID: 1620457891157397940}
   m_Layer: 6
   m_Name: grip
-  m_TagString: Untagged
+  m_TagString: Handgun
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -44,6 +45,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.5452201, y: 3.5170648, z: 0.9999998}
   m_Center: {x: 0.10792555, y: -0.2883362, z: 0.000000026960384}
+--- !u!114 &1620457891157397940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 557414695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a04b9eb14a31f1d40aaaec498800474f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponType: 1
+  currentAmmo: 15
+  maxAmmo: 15
 --- !u!1 &1494489028
 GameObject:
   m_ObjectHideFlags: 0
@@ -235,7 +251,6 @@ GameObject:
   - component: {fileID: 4774690236992981275}
   - component: {fileID: 4774690236992981250}
   - component: {fileID: 4774690236992981276}
-  - component: {fileID: 4774690236992981277}
   m_Layer: 6
   m_Name: Handgun
   m_TagString: Weapon
@@ -252,7 +267,7 @@ Transform:
   m_GameObject: {fileID: 4774690236992981252}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 15.95, y: 7.94, z: 2.24}
-  m_LocalScale: {x: 0.06, y: 0.06, z: 0.06}
+  m_LocalScale: {x: 0.05148, y: 0.05148, z: 0.05148}
   m_Children:
   - {fileID: 4774690238505387285}
   - {fileID: 3337354739980011729}
@@ -292,7 +307,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 0.65
-  m_Pitch: 1.3
+  m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
@@ -509,7 +524,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  m_ThrowVelocityScale: 3
+  m_ThrowVelocityScale: 2
   m_ThrowAngularVelocityScale: 1
   m_ForceGravityOnDetach: 0
   m_RetainTransformParent: 1
@@ -528,31 +543,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   muzzleFlashVFX: {fileID: 4774690238040111923}
   hitVFX: {fileID: 7091923357832244082, guid: 8930b8363ad6b4a46a16a2b4065c12af, type: 3}
-  _pumpAudioSource: {fileID: 0}
-  shootSFX: {fileID: 8300000, guid: bb4eb0597407cb34ba14056aa26e3f39, type: 3}
+  spawnAtRuntime: {fileID: 0}
+  pumpAudioSource: {fileID: 0}
+  shootSFX: {fileID: 8300000, guid: 09c03b19480f3744abcb84cde0ee6542, type: 3}
   emptyMagSFX: {fileID: 0}
-  reloadSFX: {fileID: 0}
+  reloadSFX: {fileID: 8300000, guid: 21c0b48d95b4e7c429a80e61b6b59b4f, type: 3}
   pumpSFX: {fileID: 0}
   range: 100
-  damage: 35
-  _weaponType: 1
-  _autoFireRate: 0.2
-  _raycastOrigin: {fileID: 3905767342287787819}
---- !u!114 &4774690236992981277
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4774690236992981252}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a04b9eb14a31f1d40aaaec498800474f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _weaponType: 1
-  currentAmmo: 15
-  maxAmmo: 15
+  damage: 40
+  weaponType: 1
+  autoFireRate: 0.2
+  raycastOrigin: {fileID: 3905767342287787819}
 --- !u!1 &4774690238271361236
 GameObject:
   m_ObjectHideFlags: 0
@@ -788,13 +789,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5481087556180237137}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0.107805036, y: -0, z: -0, w: 0.99417204}
+  m_LocalPosition: {x: -0.22, y: 1.077, z: 1.326}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4774690236992981251}
   m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -12.378, y: 0, z: 0}
 --- !u!1 &8201982637019747355
 GameObject:
   m_ObjectHideFlags: 0

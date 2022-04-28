@@ -43,9 +43,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bcc6d3f67cd33a4ca326d558038434e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MenuCanvas: {fileID: 9025617757985319861, guid: 7243c0a85d72b074fb9ff6ac404cc797,
-    type: 3}
-  LoseScreen: {fileID: 5153511717793483943, guid: ebc546bc1a2d3bc4da6c64a0abc2ba2b,
-    type: 3}
-  WinScreen: {fileID: 1856485499306292458, guid: 152666881957e6449b1db02013a0140d,
-    type: 3}
+  MenuCanvas: {fileID: 0}
+  LoseScreen: {fileID: 0}
+  WinScreen: {fileID: 0}

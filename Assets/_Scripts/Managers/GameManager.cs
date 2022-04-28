@@ -3,11 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using Managers;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-    public GameState State;
+    public GameState state;
     public static event Action<GameState> GameStateChanged;
 
     private void Awake()
@@ -22,7 +23,7 @@ public class GameManager : MonoBehaviour
 
     public void UpdateGameState(GameState newstate)
     {
-        State = newstate;
+        state = newstate;
 
         switch (newstate)
         {
@@ -38,7 +39,7 @@ public class GameManager : MonoBehaviour
             default:
                 throw new ArgumentOutOfRangeException(nameof(newstate), newstate, null);
         }
-        
+
         GameStateChanged?.Invoke(newstate);
     }
 

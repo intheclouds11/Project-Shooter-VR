@@ -2,12 +2,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class MenuManager : MonoBehaviour
 {
-    [SerializeField] private GameObject MenuCanvas;
-    [SerializeField] private GameObject LoseScreen;
-    [SerializeField] private GameObject WinScreen;
+    [SerializeField] private GameObject menuCanvas;
+    [SerializeField] private GameObject loseScreen;
+    [SerializeField] private GameObject winScreen;
 
     private void OnEnable()
     {
@@ -21,8 +22,8 @@ public class MenuManager : MonoBehaviour
 
     private void DisplayMenu(GameState state)
     {
-        MenuCanvas.SetActive(state == GameState.Lose || state == GameState.Win);
-        LoseScreen.SetActive(state == GameState.Lose);
-        WinScreen.SetActive(state == GameState.Win);
+        menuCanvas.SetActive(state == GameState.Lose || state == GameState.Win);
+        loseScreen.SetActive(true);
+        winScreen.SetActive(state == GameState.Win);
     }
 }
